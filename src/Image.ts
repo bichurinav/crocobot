@@ -73,7 +73,7 @@ class Image {
                     .text {
                         font-size: 36px;
                         fill: white;
-                        font-family: "Ubuntu";
+                        font-family: sans-serif;
                         word-break: break-all;
                     }
                 </style>

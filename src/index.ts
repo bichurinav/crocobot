@@ -67,7 +67,8 @@ import "dotenv/config";
 
       await fs.writeFile(
         path.resolve("dist", "image", `image_${ctx.message.from_id}.png`),
-        imageBuffer
+        imageBuffer,
+        "utf-8"
       );
 
       const reqVkServer = await axios({

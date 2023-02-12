@@ -57,7 +57,7 @@ require("dotenv/config");
             const { upload_url } = yield bot.execute("photos.getMessagesUploadServer", {
                 peer_id: ctx.message.peer_id,
             });
-            yield promises_1.default.writeFile(path_1.default.resolve("dist", "image", `image_${ctx.message.from_id}.png`), imageBuffer);
+            yield promises_1.default.writeFile(path_1.default.resolve("dist", "image", `image_${ctx.message.from_id}.png`), imageBuffer, "utf-8");
             const reqVkServer = yield (0, axios_1.default)({
                 method: "post",
                 url: upload_url,
