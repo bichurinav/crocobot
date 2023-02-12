@@ -69,7 +69,9 @@ require("dotenv/config");
             if (reqVkServer.status !== 200) {
                 return;
             }
-            yield promises_1.default.unlink(path_1.default.join(__dirname, `image/image_${ctx.message.from_id}.png`));
+            // await fs.unlink(
+            //   path.join(__dirname, `image/image_${ctx.message.from_id}.png`)
+            // );
             const photoFromVkServer = yield bot.execute("photos.saveMessagesPhoto", {
                 server: reqVkServer.data.server,
                 photo: reqVkServer.data.photo,

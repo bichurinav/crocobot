@@ -85,9 +85,9 @@ import "dotenv/config";
         return;
       }
 
-      await fs.unlink(
-        path.join(__dirname, `image/image_${ctx.message.from_id}.png`)
-      );
+      // await fs.unlink(
+      //   path.join(__dirname, `image/image_${ctx.message.from_id}.png`)
+      // );
 
       const photoFromVkServer = await bot.execute("photos.saveMessagesPhoto", {
         server: reqVkServer.data.server,
