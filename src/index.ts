@@ -66,7 +66,7 @@ import "dotenv/config";
       );
 
       await fs.writeFile(
-        path.resolve(`image/image_${ctx.message.from_id}.png`),
+        path.resolve("dist", "image", `image_${ctx.message.from_id}.png`),
         imageBuffer
       );
 
@@ -76,7 +76,7 @@ import "dotenv/config";
         headers: { "Content-Type": "multipart/form-data" },
         data: {
           photo: createReadStream(
-            path.resolve(`image/image_${ctx.message.from_id}.png`)
+            path.resolve("dist", "image", `image_${ctx.message.from_id}.png`)
           ),
         },
       });
@@ -85,7 +85,9 @@ import "dotenv/config";
         return;
       }
 
-      await fs.unlink(path.resolve(`image/image_${ctx.message.from_id}.png`));
+      await fs.unlink(
+        path.resolve("dist", "image", `image_${ctx.message.from_id}.png`)
+      );
 
       const photoFromVkServer = await bot.execute("photos.saveMessagesPhoto", {
         server: reqVkServer.data.server,

@@ -57,19 +57,19 @@ require("dotenv/config");
             const { upload_url } = yield bot.execute("photos.getMessagesUploadServer", {
                 peer_id: ctx.message.peer_id,
             });
-            yield promises_1.default.writeFile(path_1.default.resolve(`image/image_${ctx.message.from_id}.png`), imageBuffer);
+            yield promises_1.default.writeFile(path_1.default.resolve("dist", "image", `image_${ctx.message.from_id}.png`), imageBuffer);
             const reqVkServer = yield (0, axios_1.default)({
                 method: "post",
                 url: upload_url,
                 headers: { "Content-Type": "multipart/form-data" },
                 data: {
-                    photo: (0, fs_1.createReadStream)(path_1.default.resolve(`image/image_${ctx.message.from_id}.png`)),
+                    photo: (0, fs_1.createReadStream)(path_1.default.resolve("dist", "image", `image_${ctx.message.from_id}.png`)),
                 },
             });
             if (reqVkServer.status !== 200) {
                 return;
             }
-            yield promises_1.default.unlink(path_1.default.resolve(`image/image_${ctx.message.from_id}.png`));
+            yield promises_1.default.unlink(path_1.default.resolve("dist", "image", `image_${ctx.message.from_id}.png`));
             const photoFromVkServer = yield bot.execute("photos.saveMessagesPhoto", {
                 server: reqVkServer.data.server,
                 photo: reqVkServer.data.photo,
